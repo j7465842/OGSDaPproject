@@ -2,3 +2,24 @@ ID: OGSDaPproject
 _schema-version: "2.1"
 description: Open Sensor Data Platform Project
 version: 0.0.1
+
+modules:
+ - name: FioriLaunchpad
+   type: com.sap.portal.content
+   path: FioriLaunchpad
+   parameters:
+      stack: cflinuxfs3
+      memory: 128M
+      buildpack: https://github.com/cloudfoundry/nodejs-buildpack/releases/download/v1.6.39/nodejs-buildpack-cflinuxfs3-v1.6.39.zip
+   requires:
+    - name: portal_resources_OGSDaPproject
+    - name: uaa_OGSDaPproject
+    - name: dt_OGSDaPproject_appRouter
+    - name: OGSDaPprojectui_deployer
+
+resources:
+ - name: portal_resources_OGSDaPproject
+   parameters:
+      service-plan: standard
+      service: portal
+   type: org.cloudfoundry.managed-service
